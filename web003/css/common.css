@@ -133,6 +133,7 @@ nav .container{
 	border-radius: 50%;
 	max-width: 320px;
 	height: auto;
+	-webkit-filter: sepia(0.5);
 }
 #about-table{
 	width: 70%;

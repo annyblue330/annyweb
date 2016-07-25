@@ -1,9 +1,10 @@
 $(window).load(function(){
 	$(".loading").fadeOut("slow");
+	$("nav").css("display","none");
 });
 
 $(document).ready(function(){
-	
+	$("nav").css("display","block");
 	var flag="p1";
 
 	$(".touch").click(function(){

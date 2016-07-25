@@ -4,7 +4,7 @@ $(window).load(function(){
 });
 
 $(document).ready(function(){
-	$("nav").css("display","block");
+
 	var flag="p1";
 
 	$(".touch").click(function(){

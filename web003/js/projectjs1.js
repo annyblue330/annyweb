@@ -1,6 +1,6 @@
 $(window).load(function(){
 	$(".loading").fadeOut("slow");
-	$("nav").css("display","none");
+
 });
 
 $(document).ready(function(){

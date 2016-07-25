@@ -237,7 +237,7 @@
 }
 /*=================================order================================*/
  #order_cover{
-  	margin: 0 calc(50vw - 30%)
+  	margin: 0 calc(50vw - 30%);
   	width: 60%;
   	
   	-webkit-filter: grayscale(70%);

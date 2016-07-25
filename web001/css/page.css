@@ -237,9 +237,9 @@
 }
 /*=================================order================================*/
  #order_cover{
-  	margin: 30px 20%;
+  	margin: 0 calc(50vw - 30%)
   	width: 60%;
-  	max-width: 770px;
+  	
   	-webkit-filter: grayscale(70%);
   	filter: grayscale(70%);
   	border-radius: 8px;

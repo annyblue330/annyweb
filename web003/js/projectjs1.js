@@ -109,6 +109,7 @@ $(document).ready(function(){
 		$("#show_img").attr("src","img/ui002-health.jpg");
 		$("#show_img").css("max-width","90%");
 		$("#show_img").css("height","auto");
+		$("#show_img2").css("display","none");
 		$("#img_title").text("健康小幫手ＡＰＰ");
 		$("#img_text").text("使用Sketch製作");
 		$("#img_model").show();

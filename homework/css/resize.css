@@ -1,0 +1,48 @@
+/*media query*/
+@media only screen and (max-width:500px){
+	.page-title #logo {
+    width: 200px;
+    height: 200px;
+	}
+
+	#icon-left polyline, #icon-right polyline{
+		transform:scale(.5);
+		width: 100%;
+	}
+	#icon-left, #icon-right {
+    	width: 50px;
+	}
+
+	.page-cover .p-text {
+	    width:100%;
+	    left: 0;
+	    padding: 10px;
+	}
+
+	.title-cover{
+		padding: 0 10px;
+	}
+	.title-dox,.title-box svg{
+		width: 300px;
+		height: 200px;
+
+	}
+	.title-bg{
+		    background: url("../img/10th-fill-sm.svg");
+	}
+
+	
+}
+@media only screen and (max-width:300px){
+	#icon-left polyline, #icon-right polyline{
+		transform:scale(.3);
+		width: 100%;
+	}
+	#icon-left, #icon-right {
+    	width: 30px;
+	}
+	.page-title #logo {
+    width: 150px;
+    height: 150px;
+	}
+}

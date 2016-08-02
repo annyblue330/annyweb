@@ -1,0 +1,430 @@
+body{
+	height: 100vh;
+	width: 100vw;
+	position: relative;
+}
+*{
+	box-sizing: border-box;
+}
+h1, h2, h3, h4, h5, h6 {
+font-family: 'Old Standard TT', serif;
+}
+.title-cover{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	display: -webkit-flex;
+	justify-content:center;
+	-webkit-justify-content:center;
+	background-color:#61cdb8;
+	z-index: 1030;
+}
+
+/*title animation setting----------------------------*/
+.title-dox{
+	position: relative;
+	width:500px;
+	height:300px;
+	margin:auto;
+
+}
+
+.title-ani{
+	stroke-dasharray:500;/*可產生虛線段 越大線段越少*/
+	stroke-dashoffset:500;/*從path最大處 開始向前推進*/
+	animation:drawtext 5s linear forwards;/*當動畫完成後 保持停留在最後動畫的frame狀態*/
+	-webkit-animation:drawtext 5s linear forwards;
+}
+@keyframes drawtext{
+	to{
+		stroke-dashoffset:0;
+	}
+}
+@-webkit-keyframes drawtext{
+	to{
+		stroke-dashoffset:0;
+	}
+}
+.title-bg{
+	position: absolute;
+	top: 0;
+	left: 0;
+	background:url("../img/10th-fill.svg");
+	width: 100%;
+	height: 100%;
+	-webkit-animation:textbg 3s linear forwards;
+	-webkit-animation-delay:2s;
+	animation:textbg 3s linear forwards;
+	animation-delay:2s;
+	opacity: 0;
+}
+@keyframes textbg{
+	to{
+		opacity: 1;
+	}
+}
+/*title animation setting----------------------------*/
+
+/*burger menu btn setting----------------------------*/
+.burger svg{
+	z-index: 999;
+	position: fixed;
+	right: 30px;
+	top:30px;
+	
+}
+
+.burger svg circle:hover{
+	fill:#61cdb8;
+	cursor: pointer;
+}
+
+#nav-menu{
+	z-index: 1000;
+	position: fixed;
+	right: 0;
+	top: 0;
+	height: 100vh;
+	width: 200px;
+	background-color: #61cdb8;
+}
+#nav-menu #close{
+	position: absolute;
+	top: 30px;
+	right: 30px;
+	cursor: pointer;
+
+}
+#close:hover line{
+	stroke:white;
+}
+.li-list{
+	width: 100%;
+	margin-top: 100px;
+}
+
+#nav-menu ul{
+	list-style-type: none;
+	padding: 0;
+	margin:0;
+}
+#nav-menu ul li{
+	height: 70px;
+	width: 100%;
+	text-align: center;
+	padding: 25px 0 ;
+	border-bottom: 1px solid rgba(37, 116, 100,0.7);
+}
+#nav-menu .li-list a{
+	display: block;
+	height: 100%;
+	width: 100%;
+	text-decoration: none;
+	color: white;
+}
+
+footer{
+	width: 100%;
+	margin:30px 0;
+	height: 30%;
+	position: relative;
+}
+footer #follow{
+	padding-left: 10px;
+}
+footer .social-link{
+	padding: 0 10px;
+}
+footer .social-link a{
+	margin: 5px;
+}
+footer .social-link a img{
+	width: 30px;
+	height: 30px;
+	margin: 10px 0;
+}
+footer .copy{
+	margin-top: 50px;
+	padding-left: 10px;
+	position: absolute;
+	bottom: 0;
+}
+.navdefault{
+	transform:translate(200px,0);
+	-webkit-transform:translate(200px,0);
+
+	transition:.5s cubic-bezier(.06,.37,1,.48);
+	-webkit-transition:.5s cubic-bezier(.06,.37,1,.48);
+}
+.push-left{
+	transition:.5s cubic-bezier(.06,.37,1,.48);
+	-webkit-transition:.5s cubic-bezier(.06,.37,1,.48);
+
+	transform:translate(0,0);
+	-webkit-transform:translate(0,0);
+}
+.push-body-left{
+	transition:.5s cubic-bezier(.06,.37,1,.48);
+	-webkit-transition:.5s cubic-bezier(.06,.37,1,.48);
+
+	transform:translate(-200px,0);
+	-webkit-transform:translate(-200px,0);
+}
+.push-body-right{
+	transition:.5s cubic-bezier(.06,.37,1,.48);
+	-webkit-transition:.5s cubic-bezier(.06,.37,1,.48);
+
+	transform:translate(0,0);
+	-webkit-transform:translate(0,0);
+}
+/*當選單按下後 除選單的所有區域要覆蓋一層div*/
+#cover-div{
+	z-index: 7;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+/*page cover ----------------------------------------*/
+.page-col{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	display: -webkit-flex;
+	-webkit-align-items: center;
+    align-items: center;
+	position: relative;
+	z-index: 500;
+}
+.page-title{
+	margin: auto;
+	padding: auto;		
+}
+#icon-left, #icon-right{
+	margin: auto;
+	width: 100px;
+}
+
+.page-title #logo{
+	width: 300px;
+	height: 300px;
+	margin: auto;
+}
+.page, .page-cover , .com{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.page-cover .p1{
+	background-image: url('../img/p1.jpg');
+	background-size:cover;
+}
+.page-cover .p2{
+	background-image: url('../img/p2.jpg');
+	background-size:cover;
+}
+.page-cover .p3{
+	background-image: url('../img/p3.jpg');
+	background-size:cover;
+}
+.page-cover .p4{
+	background-image: url('../img/p4.jpeg');
+	background-size:cover;
+}
+.page-cover .p-text{
+	width: 60%;
+	position: absolute;
+	left: calc(50vw - 30%);
+	bottom: calc(20vh - 50px);
+	padding: 20px;
+
+}
+.p-text h2{
+	font-size: 1.5em;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	margin-bottom: 10px;
+}
+.p-text h2,.p-text p{
+	text-align: center;
+	color: white;
+}
+
+/*標題動畫*/
+.jump {
+  -webkit-animation-name: jump;
+  animation-name: jump;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;/*結束後保持結束時的狀態以及延伸backforward&&forward的動畫*/
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes jump {
+  from, 60%, 75%, 90%, to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 30px, 0);
+    transform: translate3d(0, 30px, 0);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -20px, 0);
+    transform: translate3d(0, -20px, 0);
+  }
+
+  75% {
+    -webkit-transform: translate3d(0, 10px, 0);
+    transform: translate3d(0, 10px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0, -5px, 0);
+    transform: translate3d(0, -5px, 0);
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes jump {
+  from, 60%, 75%, 90%, to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 30px, 0);
+    transform: translate3d(0, 30px, 0);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -20px, 0);
+    transform: translate3d(0, -20px, 0);
+  }
+
+  75% {
+    -webkit-transform: translate3d(0, 10px, 0);
+    transform: translate3d(0, 10px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0, -5px, 0);
+    transform: translate3d(0, -5px, 0);
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+
+
+/*頁面的說明文字 浮出*/
+.opacityiani{
+	-webkit-animation-name: op;
+  	animation-name: op;
+  	animation-duration: 3s;
+  	-webkit-animation-duration:3s;
+}
+@-webkit-keyframes op{
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+@keyframes op{
+from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+/*頁面浮出*/
+.fadein {
+  -webkit-animation-name: fadein;
+  animation-name: fadein;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes  fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+/*下方的切換頁面控制-----------------*/
+.page-circle{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 50px;
+	width: 100%;
+	z-index: 500;
+
+}
+.page-circle #circle-div{
+	position: absolute;
+	width: 130px;
+	height: 100%;
+	left: calc(50vw - 65px);/*畫面一半減物件的一半*/
+	z-index: 501;
+}
+.c-com{
+	height: 18px;
+	width: 18px;
+	display: inline-block;
+	background-color: rgba(255,255,255,0.4);
+	border-radius: 50%;
+	margin: 0 5px;
+}
+
+#c1:hover,#c2:hover,#c3:hover,#c4:hover{
+	cursor: pointer;
+	background-color: white;
+}
+.c-bg{
+	background-color: white;
+}
+/*左右箭頭按鈕------------------------*/
+#icon-left polyline:hover,#icon-right polyline:hover{
+	cursor: pointer;
+	stroke:white;
+}

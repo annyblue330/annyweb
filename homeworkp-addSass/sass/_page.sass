@@ -1,0 +1,86 @@
+.page, .page-cover , .com
+	position: absolute
+	top: 0
+	left: 0
+	width: 100%
+	height: 100%
+
+.page-col
+	width: 100%
+	height: 100%
+	+display-flex
+	align-items: center
+	position: relative
+	z-index: 500
+.page-title
+	margin: auto
+	#logo
+		width: 300px
+		height: 300px
+		//+rwd(500px)
+			//width: 200px
+			//height: 200px
+		
+.page 
+	#icon-left, #icon-right
+		margin: auto
+		width: 100px
+		polyline
+			&:hover
+				cursor: pointer
+				stroke: $color-main
+
+.page-cover 
+	.p1
+		+bg-img('p1', 'jpg')
+	.p2
+		+bg-img('p2', 'jpg')
+	.p3
+		+bg-img('p3', 'jpg')
+	.p4
+		+bg-img('p4', 'jpeg')
+	.p1,.p2,.p3,.p4 
+		background-size: cover
+
+	.p-text
+		width: 60%
+		position: absolute
+		left: calc(50vw - 30%)
+		bottom: calc(20vh - 50px)
+		padding: 20px
+		h2
+			font-size: 1.5em
+			text-transform: uppercase
+			letter-spacing: 3px
+			margin-bottom: 10px
+		p,h2 
+			text-align: center
+			color: white
+
+.jump
+	@extend %jump-ani	
+.opacityiani
+	@extend %text-content	
+.fadein
+	@extend %fade-setting
+
+//下方的切換頁面控制
+.page-circle
+	position: absolute
+	bottom: 0
+	left: 0
+	height: 50px
+	width: 100%
+	z-index: 500
+	#circle-div
+		position: absolute
+		width: 130px
+		height: 100%
+		left: calc(50vw - 65px)//畫面一半減物件的一半*/
+		z-index: 501
+		.c-com
+			+circle
+				cursor: pointer
+				+bgcolor
+		.c-bg
+			+bgcolor

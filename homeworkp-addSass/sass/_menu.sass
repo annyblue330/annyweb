@@ -1,0 +1,122 @@
+@font-face
+	font-family: 'svgsprite-social'
+	src:  url('#{$icomoon-font-path}/svgsprite-social.eot?cjzv1u')
+	src:  url('#{$icomoon-font-path}/svgsprite-social.eot?cjzv1u#iefix') format('embedded-opentype'),url('#{$icomoon-font-path}/svgsprite-social.ttf?cjzv1u') format('truetype'),url('#{$icomoon-font-path}/svgsprite-social.woff?cjzv1u') format('woff'),url('#{$icomoon-font-path}/svgsprite-social.svg?cjzv1u#svgsprite-social') format('svg')
+	font-weight: normal
+	font-style: normal
+
+//use !important to prevent issues with browser extensions that change fonts 
+.icon
+	font-family: 'svgsprite-social' !important
+	speak: none
+	font-style: normal
+	font-weight: normal
+	font-variant: normal
+	text-transform: none
+	line-height: 1
+
+//Better Font Rendering
+	-webkit-font-smoothing: antialiased
+	-moz-osx-font-smoothing: grayscale
+.icon-social-github	
+	&:before
+		content: $icon-social-github
+.icon-social-google
+	&:before 
+		content: $icon-social-google
+.icon-social-instagram 
+	&:before
+		content: $icon-social-instagram
+.icon-social-fb 
+	&:before 
+		content: $icon-social-fb
+
+
+///menu setting
+.burger
+	svg
+		z-index: 999
+		position: fixed
+		right: 30px
+		top: 30px
+
+		circle:hover
+			fill: $color-main
+			cursor: pointer
+
+#nav-menu
+	z-index: 1000
+	position: fixed
+	right: 0
+	top: 0
+	height: 100vh
+	width: 200px
+	+bgcolor
+	#close
+		position: absolute
+		top: 30px
+		right: 30px
+		cursor: pointer
+		&:hover
+			line
+				stroke: white
+	.li-list
+		width: 100%
+		margin-top: 100px
+		a 	
+			display: block
+			height: 100%
+			width: 100%
+			color: white
+
+		ul 	
+			padding: 0
+			margin: 0
+			li 
+				height: 70px
+				width: 100%
+				text-align: center
+				padding: 25px 0
+				border-bottom: solid rgba(37, 116, 100,0.7)
+
+footer
+	width: 100%
+	margin: 30px 0
+	height: 30%
+	position: relative
+	#follow
+		padding-left: 10px
+	.social-link
+		padding: 0 10px
+		.icon
+			font-size: 30px
+			margin-right: (180px-120px)/4
+		//icon:nth-child(4n)
+		.icon-social-fb
+			margin-right: 0
+
+	.copy
+		margin-top: 50px
+		padding-left: 10px
+		position: absolute
+		bottom: 0	
+
+.navdefault
+	+transform-ani(translate(200px,0))
+	@extend %pushmenu-ani-setting
+.push-left, .push-body-right
+	+transform-ani(translate(0,0))
+	@extend %pushmenu-ani-setting
+.push-body-left
+	+transform-ani(translate(-200px,0))
+	@extend %pushmenu-ani-setting
+
+//當選單按下後 除選單的所有區域要覆蓋一層div
+#cover-div
+	z-index: 7
+	width: 100%
+	height: 100%
+	background-color: rgba(0,0,0,0.5)
+	position: absolute
+	top: 0
+	left: 0

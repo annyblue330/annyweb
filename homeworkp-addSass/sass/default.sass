@@ -1,0 +1,46 @@
+@import 'compass'
+@import _mixin
+@import _reset 
+@import _extend
+@import _index
+@import _menu
+@import _page
+
+$w : 500px
+//+rwd($w)
+//@media only screen and (max-width: $w) 
++rwd($w)
+	.page-title 
+		#logo
+			width: 200px
+			height: 200px
+	.page
+		#icon-left
+			width: 50px
+			polyline
+				+transform(scale(.5))
+				width: 100%
+		#icon-right 
+			width: 50px
+			polyline
+				+transform(scale(.5))
+				width: 100%
+
+	.page-cover 
+		.p-text 
+			width: 100%
+			left: 0
+			padding: 10px
+
+	.title-cover
+		padding: 0 10px
+	
+	.title-box
+		width: 300px
+		height: 200px
+		svg
+			width: 300px
+			height: 200px
+
+	.title-bg
+		+bg-img(10th-fill-sm,svg)

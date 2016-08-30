@@ -11,6 +11,6 @@ output_style = :compressed  #:expanded # by Fire.app
 relative_assets = false # by Fire.app 
 line_comments = false # by Fire.app 
 sass_options = {:debug_info=>false} # by Fire.app 
-sourcemap = false # by Fire.app 
+sourcemap = true # by Fire.app 
 fireapp_coffeescript_options = {:bare=>false} # by Fire.app 
 fireapp_livescript_options = {:bare=>false} # by Fire.app 

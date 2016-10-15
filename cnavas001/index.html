@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Canvas 3D work.</title>
+	    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+	    <link rel="stylesheet" type="text/css" href="css/def.css" />
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">Canvas 3D work</a>
+	    </div>
+	    <ul class="nav navbar-nav">
+	      <li class="active"><a href="index.html">Demo 1</a></li>
+	      <li><a href="demo2.html">Demo 2</a></li> 
+	      <li><a href="demo3.html">Demo 3</a></li> 
+	      <li><a href="demo4.html">Demo 4</a></li>
+	      <li><a href="demo5.html">Demo 5</a></li>
+	    </ul>
+	  </div>
+	</nav>
+	<canvas id="canvas" width="600" height="400"></canvas>
+	<p class="text">使用上或下方向鍵，查看Ｚ軸變化 scale：<span id="scale"></span></p>
+</body>
+<script src="js/JCanvas.js"></script>
+<script>
+	//利用canvas getContent('2d') 模擬rotate3D效果
+	//2D的x,y要偏移 來模擬3D的Ｚ軸 遠近
+	//取得canvas element
+	var canvas = document.getElementById('canvas');
+	//建立舞台
+	var stage = new Stage(canvas);
+	//建立圓
+	var createBall = function(radius){
+		//預設值
+		radius = (radius === undefined) ? 20 : radius;
+		return new Sprite(stage.ctx,{
+			x: 0,
+			y: 0,
+			width: radius*2,
+			draw: function(){
+				//開始話path
+				this.ctx.beginPath();
+				//arc(x,y,r,startangle,endangle) 開始角度至結束角度為 0到2*Math.PI 。Ｒ為圓圈的radius
+				this.ctx.arc(0,0,this.width/2,0,Math.PI*2,true);
+				//關閉path
+				this.ctx.closePath();
+				//設定顏色並填滿path
+				this.ctx.fillStyle = 'rgba{0,0,0,'+Math.min(1,this.width/(2*radius))+')';
+				this.ctx.fill();
+			}
+		});
+	};
+
+	var init = function(){
+		var xpos = 0,
+			ypos = 0,
+			zpos = 0,
+			focalLength = 250,
+			//球的radius半徑
+			ballR = 20,
+			vpx,
+			vpy;
+
+			//create ball 
+			var ball = createBall(ballR);
+			//把ball加到舞台
+			stage.addChild(ball);
+
+			//get畫布中心點position
+			vpx = canvas.width/2;
+			vpy = canvas.height/2;
+			//取得滑鼠目前x,y 與畫布中心x,y之間的偏移距離 
+			stage.addEventListener('mousemove',function(x,y) {
+				xpos = x - vpx;
+				ypos = y - vpy;
+			});
+
+			//使用鍵盤上下鍵改變Ｚ軸座標
+			document.addEventListener('keydown',function(e){
+				//down 球會變近
+				if(e.keyCode == 38) zpos+=5;
+				//up 球會變遠
+				if(e.keyCode == 40) zpos-=5;
+			});
+			//每幀刷新的改變
+			stage.onRefresh = function(){
+				//扁平化Ｚ軸座標
+				var scale = focalLength/(focalLength+zpos);
+				//把扁平化後的Ｚ＊偏移量（ＸＰＯＳ） 加上畫布中心點 
+				ball.x = vpx + xpos*scale;
+				ball.y = vpy + ypos*scale;
+				//球的大小也隨Ｚ軸更動
+				ball.width = ballR*2*scale;
+				document.getElementById('scale').innerHTML = scale;
+			};
+			stage.start();
+	};
+	init();
+
+
+</script>
+</html>

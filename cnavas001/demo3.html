@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Canvas 3D work Demo3.</title>
+	    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+	    <link rel="stylesheet" type="text/css" href="css/def.css" />
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">Canvas 3D work</a>
+	    </div>
+	    <ul class="nav navbar-nav">
+	      <li ><a href="index.html">Demo 1</a></li>
+	      <li ><a href="demo2.html">Demo 2</a></li> 
+	      <li class="active"><a href="demo3.html">Demo 3</a></li> 
+          <li><a href="demo4.html">Demo 4</a></li>
+	      <li><a href="demo5.html">Demo 5</a></li>
+	    </ul>
+	  </div>
+	</nav>
+	<canvas id="canvas" class="space" width="600" height="400"></canvas>
+	<p class="text">滑鼠Ｘ與Ｙ軸影響球的轉動。</p>
+</body>
+<script src="js/JCanvas.js"></script>
+<script>
+	//利用canvas getContent('2d') 模擬rotate3D效果
+	//2D的x,y要偏移 來模擬3D的Ｚ軸 遠近
+	//取得canvas element
+	var canvas = document.getElementById('canvas');
+	//建立舞台
+	var stage = new Stage(canvas);
+	//建立顏色隨機＆大小隨機的圓
+	var createBall = function (radius) {
+		radius = (radius === undefined) ? 20 : radius;
+		//color random
+        var r = Math.floor(Math.random()*255),
+            g = Math.floor(Math.random()*255),
+            b = Math.floor(Math.random()*255);
+		return new Sprite(stage.ctx, {
+			x: 0,
+			y: 0,
+			width: radius*2,
+			draw: function () { 
+				this.ctx.beginPath();
+				//arc(x,y,r,startangle,endangle) 開始角度至結束角度為 0到2*Math.PI 。Ｒ為圓圈的radius
+				this.ctx.arc(0, 0, this.width/2, 0, Math.PI*2, true);
+				this.ctx.closePath();
+				//設定顏色並填滿path
+				this.ctx.fillStyle = 'rgba('+r+','+g+','+b+','+ Math.min(1, this.width/(2*radius)) +')';
+				this.ctx.fill();
+			}
+		});
+	};
+	var init = function(){
+		var focalLength = 250,
+			//球的radius半徑
+			ballR = 3,
+			//求的數量
+			ballN = 120,
+			balls = [],
+			vpx = 0,
+			vpy = 0,
+			angleY = 0,
+			angleX = 0;
+
+			//建立多個球
+			for(var i=0; i<ballN;i++)
+			{
+				//create ball 
+				var ball = createBall(ballR);
+				//把ball加到舞台
+				stage.addChild(ball);
+				ball.xpos = Math.random() * 200 - 100;
+				ball.ypos = Math.random() * 200 - 100;
+				ball.zpos = Math.random() * 200 - 100;
+				balls.push(ball);
+			}
+			
+
+			//get畫布中心點position 繞此點旋轉
+			vpx = canvas.width/2;
+			vpy = canvas.height/2;
+		
+			//計算滑鼠x,y位置 離中心點越近 速度會變慢 反之則越快
+			stage.addEventListener('mousemove',function(x,y){
+				angleY = (x - vpx) * .001;
+				angleX = (y - vpy) * .001;
+			});
+
+			//以Ｙ軸為旋轉 得出Ｘ與Ｚ座標
+			function rotateY(ball, angleY) {
+				var cosy = Math.cos(angleY),
+					siny = Math.sin(angleY),
+					//加上Ｚ方向的偏移
+					x1 = ball.xpos * cosy - ball.zpos * siny,
+					z1 = ball.zpos * cosy + ball.xpos * siny;
+				ball.xpos = x1;
+				ball.zpos = z1;
+	 			
+			}
+			function rotateX(ball, angleX) {
+				var cosx = Math.cos(angleX),
+					sinx = Math.sin(angleX),
+					//加上Ｚ方向的偏移
+					y1 = ball.ypos * cosx - ball.zpos * sinx,
+					z1 = ball.zpos * cosx + ball.ypos * sinx;
+				ball.ypos = y1;
+				ball.zpos = z1;
+	 			
+			}
+
+			//把新x,y,z座標轉換成二維空間
+			function render(ball){
+				//folcalLength為當前焦距
+				if(ball.zpos > -focalLength)
+				{
+					//z方向扁平化 但公式不知哪來
+					var scale = focalLength/(focalLength + ball.zpos);
+					ball.x = vpx + ball.xpos * scale;
+					ball.y = vpy + ball.ypos * scale;
+					ball.width = ballR*2*scale;
+				}
+			}
+			function sortZ () {
+			    balls.sort(function (a, b) { return b.zpos-a.zpos })
+			    stage.children.sort(function (a, b) { return b.zpos-a.zpos })
+			}
+			//每幀刷新的改變
+			stage.onRefresh = function(){
+				for(var i=0,ball; ball = balls[i];i++)
+				{
+					rotateX(ball,angleX);
+					rotateY(ball,angleY);
+					
+					render(ball);
+				}
+				sortZ();
+			};
+			stage.start();
+	};
+	onloacd = init();
+
+
+</script>
+</html>

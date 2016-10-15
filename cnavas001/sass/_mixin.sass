@@ -1,0 +1,56 @@
+@mixin bg-img($bgname, $filetype)
+	background: url("../image/#{$bgname}.#{$filetype}")
+
+@mixin bg-img-wh($bgname, $filetype)
+	background: url("../image/#{$bgname}.#{$filetype}")
+	width: image-width("../image/#{$bgname}.#{$filetype}")
+	height: image-height("../image/#{$bgname}.#{$filetype}")
+
+@mixin text-hide
+	white-space: nowrap
+	text-indent: 100%
+	overflow: hidden
+
+$all-font: 'h1, h2, h3, h4, h5, h6'
+@mixin fontStyle($style1,$style-def)
+	font-family: $style1, $style-def
+
+
+$color-main: #61cdb8
+@mixin bgcolor($col: $color-main)
+	background-color: $col
+
+
+@mixin transform-ani($translate)
+	+transform($translate)
+
+
+//rwd
+@mixin rwd($w)
+	@media only screen and (max-width: $w) 
+		@content
+
+//svg variables
+$icomoon-font-path: "../fonts" !default
+
+$icon-social-github: "\e900"
+$icon-social-google: "\e901"
+$icon-social-instagram: "\e902"
+$icon-social-fb: "\e903"
+$icon-mail: "\ea83"
+$icon-rss2: "\ea9c"
+$icon-blogger2: "\eab8"
+$icon-tumblr2: "\eaba"
+
+//grid
+$width: 180px //menu width
+@mixin grid($cloum_number,$cloum_gutter)
+	//總寬度 -    欄位間距  *    (欄位數量-1)      /   欄位數量
+	width: ($width - $cloum_gutter*($cloum_number - 1) ) / $cloum_number
+	margin-right: $cloum_gutter
+	-webkit-box-sizing: border-box
+	-moz-box-sizing: border-box
+	box-sizing: border-box
+	//   欄位數量
+	&:nth-child(#{$cloum_number}n)
+	margin-right: 0

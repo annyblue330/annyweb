@@ -1,0 +1,24 @@
+canvas {
+  display: block;
+  border: 2px solid #ccc;
+  margin: 10px auto;
+}
+
+.space {
+  background: url(../image/space.png);
+  background-size: cover;
+}
+
+.demo4 {
+  background: #DE6262;
+  background: -webkit-linear-gradient(to left, #DE6262, #FFB88C);
+  background: linear-gradient(to left, #DE6262, #FFB88C);
+}
+
+.text {
+  text-align: center;
+  font-size: 12px;
+  color: #454545;
+}
+
+/*# sourceMappingURL=init.css.map */

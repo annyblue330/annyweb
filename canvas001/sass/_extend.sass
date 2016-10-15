@@ -1,0 +1,54 @@
+$transition-setting: .2s cubic-bezier(.06,.37,1,.48)
+
+%pushmenu-ani-setting
+	+transition($transition-setting)
+
+%jump-ani
+	+animation-name(jump)
+	+animation-duration(1s)
+	+animation-fill-mode(both)
+
+
++keyframes(jump)
+	from, 60%, 75%, 90%, to 
+		+animation-timing-function(cubic-bezier(0.215, 0.610, 0.355, 1.000))
+	from 
+		+opacity(0)
+		+transform-ani(translate3d(0, 30px, 0))	
+	60% 
+		+opacity(1)
+		+transform-ani(translate3d(0, -20px, 0))	
+	75% 
+		$a: 00, 10px, 0
+		+transform-ani(translate3d(0, 10px, 0))	
+	90% 
+		$a: 0, -5px, 0
+		+transform-ani(translate3d(0, -5px, 0))	
+	to 
+		$a: 0, 0, 0
+		+transform-ani(translate3d(0, 0, 0))	
+	
+//頁面的說明文字 浮出
+%text-content
+	+animation-name(op)
+	+animation-duration(3s)
+
++keyframes(op)
+	from 
+		opacity: 0
+	to 
+		opacity: 1
+//頁面浮出
+%fade-setting
+	+animation-name(fadein)
+	+animation-duration(1s)
+	+animation-fill-mode(both)
++keyframes(fadein)
+	from
+		+opacity(0)
+	to 
+		+opacity(1)
+
+		
+
+

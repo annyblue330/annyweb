@@ -20,7 +20,7 @@
 	    </ul>
 	  </div>
 	</nav>
-	<!-- 大小要等比例 否則中心點推算後續位子會跑掉 -->
+	<!-- 一定要使用 Canvas 自带的 width 和 height 属性，不要使用 CSS 来控制，因为 CSS 控制会导致 Canvas 变形。-->
 	<canvas id="canvas" class="demo4" width="1000" height="800"></canvas>
 	<p class="text"><label for="checkPoint">是否顯示球球</label><input type="checkbox" checked="checked" id="checkPoint"></p>
 </body>
@@ -46,6 +46,7 @@
 			draw: function () { 
 				this.ctx.beginPath();
 				//arc(x,y,r,startangle,endangle) 開始角度至結束角度為 0到2*Math.PI 。Ｒ為圓圈的radius
+				// ctx.arc(圆心 x 坐标, 圆心 y 坐标, 半径, 起始角度, 终止角度, 是否为逆时针);
 				this.ctx.arc(0, 0, this.width/2, 0, Math.PI*2, true);
 				this.ctx.closePath();
 				//設定顏色並填滿path
